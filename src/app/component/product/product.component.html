@@ -46,6 +46,7 @@
       <th class="th-sm">Product Name</th>
       <th class="th-sm">Product Weight</th>
       <th class="th-sm">Product Price</th>
+      <th class="th-sm">Delete Product</th>
     </tr>
     </thead>
     <tbody>
@@ -53,6 +54,7 @@
       <td>{{product.name}}</td>
       <td>{{product.weight}}</td>
       <td>{{product.price}}</td>
+      <td><button class="btn btn-outline-danger" (click)="removeProduct(product.id)">Remove From Store</button></td>
     </tr>
     </tbody>
     <tfoot>
@@ -60,6 +62,7 @@
       <th class="th-sm">Product Name</th>
       <th class="th-sm">Product Weight</th>
       <th class="th-sm">Product Price</th>
+      <th class="th-sm">Delete Product</th>
     </tr>
     </tfoot>
   </table>

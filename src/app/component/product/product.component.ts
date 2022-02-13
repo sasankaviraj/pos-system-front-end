@@ -55,4 +55,14 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  removeProduct(id: number) {
+    this.productService.deleteProduct(id).subscribe((response: any) => {
+      this.getProducts();
+      Swal.fire(
+        'Product Deleted Successfully!',
+        'success'
+      );
+    });
+  }
+
 }
