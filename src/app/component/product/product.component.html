@@ -1,0 +1,66 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Add Product</li>
+  </ol>
+</nav>
+
+<div class="container">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="form-group col">
+        <label>Product Name</label>
+        <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && formControl.name.errors }" />
+        <div *ngIf="submitted && formControl.name.errors" class="invalid-feedback">
+          <div *ngIf="formControl.name.errors.required">Product Name is required</div>
+        </div>
+      </div>
+      <div class="form-group col">
+        <label>Price</label>
+        <input type="text" formControlName="price" class="form-control" [ngClass]="{ 'is-invalid': submitted && formControl.price.errors }" />
+        <div *ngIf="submitted && formControl.price.errors" class="invalid-feedback">
+          <div *ngIf="formControl.price.errors.required">Price is required</div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="form-group col">
+        <label>Weight</label>
+        <input type="text" formControlName="weight" class="form-control" [ngClass]="{ 'is-invalid': submitted && formControl.weight.errors }" />
+        <div *ngIf="submitted && formControl.weight.errors" class="invalid-feedback">
+          <div *ngIf="formControl.weight.errors.required">Weight is required</div>
+        </div>
+      </div>
+      <div class="form-group col">
+        <br>
+        <button class="btn btn-success">Save Product</button>
+      </div>
+    </div>
+  </form>
+</div>
+<br>
+<div class="container">
+  <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+      <th class="th-sm">Product Name</th>
+      <th class="th-sm">Product Weight</th>
+      <th class="th-sm">Product Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of productList">
+      <td>{{product.name}}</td>
+      <td>{{product.weight}}</td>
+      <td>{{product.price}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <th class="th-sm">Product Name</th>
+      <th class="th-sm">Product Weight</th>
+      <th class="th-sm">Product Price</th>
+    </tr>
+    </tfoot>
+  </table>
+</div>

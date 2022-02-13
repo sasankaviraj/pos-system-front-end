@@ -1,0 +1,27 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Add Customer</li>
+  </ol>
+</nav>
+
+<div class="container">
+  <form [formGroup]="customerForm">
+    <div class="row">
+      <div class="col">
+        <input type="text" formControlName="name" class="form-control" placeholder="Customer name">
+      </div>
+      <div class="col">
+        <input type="text" formControlName="address" class="form-control" placeholder="Address">
+      </div>
+    </div>
+  <br>
+    <div class="row">
+      <div class="col">
+        <input type="text" formControlName="contactNo" class="form-control" placeholder="Contact number">
+      </div>
+      <div class="col">
+        <button class="btn btn-success">Save Customer</button>
+      </div>
+    </div>
+  </form>
+</div>
