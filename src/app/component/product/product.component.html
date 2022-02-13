@@ -33,14 +33,18 @@
       </div>
       <div class="form-group col">
         <br>
-        <button class="btn btn-success">Save Product</button>
+        <div class="row-cols-2">
+          <button class="btn btn-success col">{{btnTypeSave?'Save Product':'Update Product'}}</button>
+          <button class="btn btn-warning text-light col" *ngIf="!btnTypeSave" (click)="reset()">Add New Product</button>
+        </div>
       </div>
     </div>
+
   </form>
 </div>
 <br>
 <div class="container">
-  <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+  <table id="dtBasicExample" class="table table-striped table-bordered table-sm table-hover" cellspacing="0" width="100%">
     <thead>
     <tr>
       <th class="th-sm">Product Name</th>
@@ -50,11 +54,11 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let product of productList">
+    <tr *ngFor="let product of productList" (click)="rowClicked(product)">
       <td>{{product.name}}</td>
       <td>{{product.weight}}</td>
       <td>{{product.price}}</td>
-      <td><button class="btn btn-outline-danger" (click)="removeProduct(product.id)">Remove From Store</button></td>
+      <td><button class="btn btn-outline-danger" (click)="removeProduct(product.id)"><i class="fa fa-trash-o fa-lg"></i></button></td>
     </tr>
     </tbody>
     <tfoot>

@@ -15,9 +15,11 @@ export class ProductComponent implements OnInit {
   product: Product;
   submitted = false;
   productList: Product[];
+  btnTypeSave: boolean;
   constructor(private formBuilder: FormBuilder, private productService: ProductService) {}
 
   ngOnInit() {
+    this.btnTypeSave = true;
     this.getProducts();
     this.productForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(4)]],
@@ -41,6 +43,7 @@ export class ProductComponent implements OnInit {
     this.productService.saveProduct(product).subscribe((response: Product) => {
       console.log(response);
       this.getProducts();
+      this.reset();
       Swal.fire(
         'Product Saved Successfully!',
         'success'
@@ -56,13 +59,39 @@ export class ProductComponent implements OnInit {
   }
 
   removeProduct(id: number) {
-    this.productService.deleteProduct(id).subscribe((response: any) => {
-      this.getProducts();
-      Swal.fire(
-        'Product Deleted Successfully!',
-        'success'
-      );
+    Swal.fire({
+      title: 'Do you want to delete the product?',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Delete',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productService.deleteProduct(id).subscribe((response: any) => {
+          this.reset();
+          this.getProducts();
+          Swal.fire(
+            'Product Deleted Successfully!',
+            'success',
+            'success'
+          );
+        });
+      }
     });
+
+  }
+
+  rowClicked(product: Product) {
+    this.productForm.setValue({
+      name: product.name,
+      weight: product.weight,
+      price: product.price
+    });
+    this.btnTypeSave = false;
+  }
+
+  reset() {
+    this.btnTypeSave = true;
+    this.submitted = false;
+    this.productForm.reset();
   }
 
 }
