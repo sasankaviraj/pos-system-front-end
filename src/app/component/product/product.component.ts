@@ -16,6 +16,9 @@ export class ProductComponent implements OnInit {
   submitted = false;
   productList: Product[];
   btnTypeSave: boolean;
+  productId: number;
+  page = 1;
+  pageSize = 5;
   constructor(private formBuilder: FormBuilder, private productService: ProductService) {}
 
   ngOnInit() {
@@ -40,21 +43,31 @@ export class ProductComponent implements OnInit {
   }
 
   saveProduct(product: Product) {
-    this.productService.saveProduct(product).subscribe((response: Product) => {
-      console.log(response);
-      this.getProducts();
-      this.reset();
-      Swal.fire(
-        'Product Saved Successfully!',
-        'success'
-      );
-    });
+    if (this.btnTypeSave) {
+      this.productService.saveProduct(product).subscribe((response: Product) => {
+        this.getProducts();
+        this.reset();
+        Swal.fire(
+          'Product Saved Successfully!',
+          'success'
+        );
+      });
+    } else {
+      this.productService.updateProduct(product, this.productId).subscribe((response: Product) => {
+        this.getProducts();
+        this.reset();
+        Swal.fire(
+          'Product Updated Successfully!',
+          'success'
+        );
+      });
+    }
+
   }
 
   getProducts() {
-    this.productService.getProducts().subscribe((response: Product[]) => {
+    this.productService.getProducts().subscribe((response) => {
       this.productList = response;
-      console.log(this.productList);
     });
   }
 
@@ -85,11 +98,13 @@ export class ProductComponent implements OnInit {
       weight: product.weight,
       price: product.price
     });
+    this.productId = product.id;
     this.btnTypeSave = false;
   }
 
   reset() {
     this.btnTypeSave = true;
+    this.productId = null;
     this.submitted = false;
     this.productForm.reset();
   }

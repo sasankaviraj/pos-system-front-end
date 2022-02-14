@@ -12,8 +12,8 @@ export class ExceptionHandler {
         `Backend returned code ${error.status}, body was: `, error.error);
     }
     Swal.fire(
-       'Server Connection Refused!',
-       'Try again later!',
+       'Server Error Occurred!',
+       'Something bad happened; please try again later!',
        'error'
      );
     return throwError(() => new Error('Something bad happened; please try again later.'));

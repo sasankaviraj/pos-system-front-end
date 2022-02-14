@@ -21,6 +21,12 @@ export class ProductService {
     );
   }
 
+  updateProduct(product: Product, id: number) {
+    return this.http.post<Product>(Constants.BASE_URL + URL + '/update/' + id, product).pipe(
+      catchError(ExceptionHandler.handleError)
+    );
+  }
+
   getProducts() {
     return this.http.get<Product[]>(Constants.BASE_URL + URL + '/all').pipe(
       catchError(ExceptionHandler.handleError)
