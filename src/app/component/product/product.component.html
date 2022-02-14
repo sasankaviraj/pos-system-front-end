@@ -56,8 +56,8 @@
     <tbody>
     <tr *ngFor="let product of productList | slice: (page-1) * pageSize : page * pageSize" (click)="rowClicked(product)">
       <td>{{product.name}}</td>
-      <td>{{product.weight}}</td>
-      <td>{{product.price}}</td>
+      <td>{{product.weight}}g</td>
+      <td>Rs.{{product.price}}</td>
       <td><button class="btn btn-outline-danger" (click)="removeProduct(product.id)"><i class="fa fa-trash-o fa-lg"></i></button></td>
     </tr>
     </tbody>
