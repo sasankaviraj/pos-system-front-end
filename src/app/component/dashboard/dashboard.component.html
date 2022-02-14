@@ -25,6 +25,7 @@
           <thead>
           <tr>
             <th class="th-sm">Product Name</th>
+            <th class="th-sm">Weight</th>
             <th class="th-sm">Quantity</th>
             <th class="th-sm">Price (per 1)</th>
           </tr>
@@ -32,8 +33,9 @@
           <tbody>
           <tr *ngFor="let detail of order.order.orderDetailList">
             <td>{{detail.name}}</td>
+            <td>{{detail.weight}}g</td>
             <td>{{detail.quantity}}</td>
-            <td>{{detail.price}}</td>
+            <td>Rs.{{detail.price}}</td>
           </tr>
           </tbody>
         </table>
