@@ -47,7 +47,7 @@
 <div class="container-fluid">
   <table class="table table-bordered table-striped">
     <thead>
-    <tr>
+    <tr class="bg-warning">
       <th scope="col">Customer Name</th>
       <th scope="col">Address</th>
       <th scope="col">Contact Number</th>
@@ -75,7 +75,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let detail of order.order.orderDetailList" (click)="rowClicked(detail)">
+          <tr *ngFor="let detail of order.order.orderDetailList">
             <td>{{detail.name}}</td>
             <td>{{detail.quantity}}</td>
             <td>{{detail.price}}</td>

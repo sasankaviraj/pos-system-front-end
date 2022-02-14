@@ -7,11 +7,11 @@ import {OrderComponent} from './component/order/order.component';
 
 
 const routes: Routes = [
-  {path:'',redirectTo:'dashboard',pathMatch:'full'},
-  {path:'dashboard',component:DashboardComponent},
-  {path:'product',component:ProductComponent},
-  {path:'customer',component:CustomerComponent},
-  {path:'order',component:OrderComponent}
+  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: 'dashboard', component: DashboardComponent},
+  {path: 'product', component: ProductComponent},
+  {path: 'customer', component: CustomerComponent},
+  {path: 'order', component: OrderComponent}
 ];
 
 @NgModule({

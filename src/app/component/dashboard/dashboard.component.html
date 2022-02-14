@@ -1,1 +1,52 @@
-<p>dashboard works!</p>
+<h1 class="text-center">WELCOME TO POS SYSTEM</h1>
+<br>
+<div class="container-fluid">
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr class="bg-success text-light">
+      <th scope="col">Customer Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Contact Number</th>
+      <th scope="col">Order Details</th>
+      <th scope="col">Placed Date</th>
+      <th scope="col">Order Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of ordersList  | slice: (page-1) * pageSize : page * pageSize">
+      <td>
+
+        <ngb-highlight [result]="order.customer.name"></ngb-highlight>
+      </td>
+      <td><ngb-highlight [result]="order.customer.address"></ngb-highlight></td>
+      <td><ngb-highlight [result]="order.customer.contactNumber | number"></ngb-highlight></td>
+      <td>
+        <table  class="table table-striped table-bordered table-sm table-hover" cellspacing="0" width="100%">
+          <thead>
+          <tr>
+            <th class="th-sm">Product Name</th>
+            <th class="th-sm">Quantity</th>
+            <th class="th-sm">Price (per 1)</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let detail of order.order.orderDetailList">
+            <td>{{detail.name}}</td>
+            <td>{{detail.quantity}}</td>
+            <td>{{detail.price}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+      <td>{{order.order.dateTime}}</td>
+      <td>
+        <h5>{{order.order.completed?'Completed' : 'Pending'}}</h5>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <ngb-pagination
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="ordersList.length"></ngb-pagination>
+</div>
