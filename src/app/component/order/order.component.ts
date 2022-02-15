@@ -41,7 +41,15 @@ export class OrderComponent implements OnInit {
     const order = new Order();
     order.customerId = Number(this.selectedCustomer);
     order.orderDetailList = this.orderDetailList;
-    this.saveOrder(order);
+    if (this.orderDetailList.length === 0) {
+      Swal.fire(
+        'Nothing to save!',
+        'Please add products to make an order',
+        'error'
+      );
+    } else {
+      this.saveOrder(order);
+    }
   }
 
   clear() {
