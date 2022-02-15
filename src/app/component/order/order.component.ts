@@ -124,7 +124,7 @@ export class OrderComponent implements OnInit {
     console.log(this.selectedCustomer);
     Swal.fire({
       title: 'Enter the quantity',
-      input: 'text',
+      input: 'number',
       inputAttributes: {
         autocapitalize: 'off'
       },
