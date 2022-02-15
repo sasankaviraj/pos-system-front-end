@@ -132,11 +132,13 @@ export class OrderComponent implements OnInit {
       confirmButtonText: 'Add to cart',
       showLoaderOnConfirm: true,
       preConfirm: (qty) => {
-        const orderDetail = new OrderDetail();
-        orderDetail.productId = Number(this.selectedProduct);
-        orderDetail.quantity = qty;
-        this.orderDetailList.push(orderDetail);
-        this.getTotalPrice();
+        if (qty !== '') {
+          const orderDetail = new OrderDetail();
+          orderDetail.productId = Number(this.selectedProduct);
+          orderDetail.quantity = qty;
+          this.orderDetailList.push(orderDetail);
+          this.getTotalPrice();
+        }
       },
       allowOutsideClick: () => !Swal.isLoading()
     });
